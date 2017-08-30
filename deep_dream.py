@@ -162,7 +162,7 @@ def main():
 	channel = 139 # picking some feature channel to visualize
 	
 	#open image
-	img0 = PIL.Image.open('pink.jpg')
+	img0 = PIL.Image.open('./data/pink.jpg')
 	img0 = np.float32(img0)
 	 
 	#Step 4 - Apply gradient ascent to that layer
