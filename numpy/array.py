@@ -29,7 +29,7 @@ np.array(my_mat)
 # que es como usar una funcio range
 
 np.arange(0,10,2)
-# array([0,2,,4,6,8,10])
+# array([0,2,4,6,8,10])
 
 # por ejemplo podmos hacer array de solo ceros, pasandole las
 # dimesiones que queremos que tenga con una tupla
@@ -70,6 +70,7 @@ np.random.rand(3,2)
 #        [ 0.45273983,  0.12403625]])
 
 # np.random.randn() sirve igual solo que genera numero negativos
+# y positivos
 
 np.random.randn(3,2)
 # array([[-1.35875732,  0.29439128],
