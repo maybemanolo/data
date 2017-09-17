@@ -32,4 +32,4 @@ plt.show()
 # checamos la correlacion que hay entre cada una de las columnas
 
 sns.heatmap(df.corr(),annot=True)
-
+plt.show()
