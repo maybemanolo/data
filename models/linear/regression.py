@@ -19,8 +19,7 @@ df.columns
 # cuando no tenemos un dataset no muy grande usamos pairplot para
 # empezar a visualizar
 
-sns.pairplot(data=df
-	)
+sns.pairplot(data=df)
 plt.show()
 
 # vamos a intentar predecir el precio de una cassa de acuerdo
@@ -113,3 +112,8 @@ from sklearn import metrics
 metrics.mean_absolute_error(y_test,predictions)
 metrics.mean_squared_error(y_test,predictions)
 np.sqrt(metrics.mean_squared_error(y_test,predictions))
+
+# para saber que tan bien sirve un modelo usamos el siguiente
+# metodo, que nos da el porcentaje de cuanto podemos explicar
+
+metrics.explained_variance_score(y_test,predictions)
