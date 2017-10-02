@@ -31,7 +31,7 @@ plt.show()
 
 # vamos hacer mas visualizaciones al dataset
 
-sns.countplot(x='Sruvived',hue='Sex',data=train)
+sns.countplot(x='Survived',hue='Sex',data=train)
 plt.show()
 
 # una distibucion
@@ -50,7 +50,7 @@ plt.show()
 
 # ver cuanta gente pago por boletos caros
 
-train['Fare'].hist(bins=40,figsize(10,4))
+train['Fare'].hist(bins=40,figsize=(10,4))
 plt.show()
 
 # ahora vamos a limpiar nuestro dataset desahaciendonos de los
