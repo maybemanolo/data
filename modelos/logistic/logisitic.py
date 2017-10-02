@@ -7,9 +7,6 @@
 # mientras que el algoritmo decide que va tene de valor, diciendo
 # que los valores de 0.5 hace abajo es 0 mientras el resto es 1
 
-# aqui se crea una confusion matrix para ver que tan correcto es
-# nuestro modelo logistico
-
 # falso positivo (tipo I) es cuando el modelo predice algo pero
 # esta incorrecto y el falso negativo (tipo II) es cuando el 
 # modelo predice algo incorrecto
