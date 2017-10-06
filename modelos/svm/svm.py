@@ -52,7 +52,7 @@ from sklearn.grid_search import GridSearchCV
 
 # c y gamma son parametros para ajustar la precision
 
-param_grid = {'C':[0.0001,0.001,0.01,0.1,10,100,1000],'gamma':[0.0001,0.001,0.01,0.1,1,10,100,1000]}
+param_grid = {'C':[0.1,1,10,100],'gamma':[0.001,0.01,0.1,1]}
 
 # corremos el gridsearch
 
