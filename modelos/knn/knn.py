@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+plt.rcParams["patch.force_edgecolor"] = True
 
 df = pd.read_csv('classified_data.csv',index_col=0)
 
