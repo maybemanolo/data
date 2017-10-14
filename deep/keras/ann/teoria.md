@@ -79,3 +79,33 @@ Si por ejemplo tenemos una red neuronal de 1 layer de 5 neuronas y 5 entradas, v
 La computadora mas rapida del mundo terminaria en 3.41x10^50 años en calcular todo eso.
 
 Para eso tenemos el metodo gradient descent, una vez que tenemos nuestra funcion de costo graficada, graficamos un punto aleatorio, si sacamos la derivada parcial de ese momento de la funcion nos va decir a que lado tenemos que ir si es + se incrementa y si es - se decrementa el valor de x, cuando empieze a subir el valor de f(x) dejamos de incremetnar/decrementar.
+
+## Stochastic Gradient Descent
+
+Cuando usamos gradient descent solo nos serviria en complex functions, como una parabola perfecta, que pasa si nuestra funcion de costo graficada se ve asi:
+
+![Image of Non covex](nonconvex.png)
+
+Esta clase de graficas puede confundir a nuestro algoritmo de donde esta el mejor valor para usar, por que vemos como hay dos valores que en ambos lados esta rodeados.
+
+Lo que pasa normalmente es con Gradient Descent es que ajusta los weights de nuestra red neuronal una vez que ya paso todo el dataset, pero en Stochastic Gradient Descent prueba un valr cambia los valores de los weights prueba otro vuelve a cambiar y asi con todos hata probar todo el dataset.
+
+El gradient descent normal tambien es llamado Batch Gradient Descent.
+
+## Backpropagation
+
+Ya entendemos lo que pasa en Forward Propagation que simplemente pasar los inputs por los layers y generar un resultado Yhat para despues suceda Back Propagation el cual actualiza los weights. 
+
+Back Propagations es una algoritmo que actualiza los weights al mismo tiempo. Es algo que no podemos hacer manualmente.
+
+### Y en resumen en esto consiste entrenar una red neuronal:
+
+
+1. Asignar valores aleatorios a los weights cerca del 0
+2. Pasar la primera fila de valores al input layer, cada feature es un node
+3. Forward Propagation, viaja la informacion de izquierda a derecha para activar las neuronas de cierta manera limitandose por el valor de weights hasta conseguir el output
+4. Comparamos la prediccion con el valor deseado, con la funcion de costo
+5. Back Propagation, viaja la informacion de derecha a izquierda, actualizando las weights de acuerdo que tan responsables son del erro, el learning rate decide que tanto les actualizamos
+6. Repetimos del 1 al 5 y actualizamos los weights despues de cada observacion (Reinforcement Learning)
+6. Repetimos del 1 al 5 y actualizamos los weights despues de muchas observaciones (Batch Learning)
+7. Cuando todo el training set pasa una vez por la red neuronal eso crea una epoca (epoch), corremos mas epocas
