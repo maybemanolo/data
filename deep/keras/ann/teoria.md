@@ -101,11 +101,11 @@ Back Propagations es una algoritmo que actualiza los weights al mismo tiempo. Es
 ### Y en resumen en esto consiste entrenar una red neuronal:
 
 
-1. Asignar valores aleatorios a los weights cerca del 0
-2. Pasar la primera fila de valores al input layer, cada feature es un node
-3. Forward Propagation, viaja la informacion de izquierda a derecha para activar las neuronas de cierta manera limitandose por el valor de weights hasta conseguir el output
-4. Comparamos la prediccion con el valor deseado, con la funcion de costo
-5. Back Propagation, viaja la informacion de derecha a izquierda, actualizando las weights de acuerdo que tan responsables son del erro, el learning rate decide que tanto les actualizamos
-6. Repetimos del 1 al 5 y actualizamos los weights despues de cada observacion (Reinforcement Learning)
-6. Repetimos del 1 al 5 y actualizamos los weights despues de muchas observaciones (Batch Learning)
-7. Cuando todo el training set pasa una vez por la red neuronal eso crea una epoca (epoch), corremos mas epocas
+1. Asignar valores aleatorios a los weights cerca del 0.
+2. Pasar la primera fila de valores al input layer, cada feature es un node.
+3. Forward Propagation, viaja la informacion de izquierda a derecha para activar las neuronas de cierta manera limitandose por el valor de weights hasta conseguir el output.
+4. Comparamos la prediccion con el valor deseado, con la funcion de costo.
+5. Back Propagation, viaja la informacion de derecha a izquierda, actualizando las weights de acuerdo que tan responsables son del erro, el learning rate decide que tanto les actualizamos.
+6. Repetimos del 1 al 5 y actualizamos los weights despues de cada observacion (Reinforcement Learning).
+6. Repetimos del 1 al 5 y actualizamos los weights despues de muchas observaciones (Batch Learning).
+7. Cuando todo el training set pasa una vez por la red neuronal eso crea una epoca (epoch), corremos mas epocas.
