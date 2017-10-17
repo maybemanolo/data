@@ -126,3 +126,14 @@ from sklearn.metrics import classification_report
 ac = classification_report(y_test,y_pred)
 
 print(ac)
+
+# guardamos la red neuronal entrenada
+
+from keras.models import model_from_json
+
+model_json = classifier.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+
+classifier.save_weights("model.h5")
+print("Saved model to disk")
