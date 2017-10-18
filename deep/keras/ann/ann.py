@@ -103,7 +103,7 @@ classifier.compile(optimizer='Adam',loss='binary_crossentropy',metrics=['accurac
 
 # ahora vamos a entrenar la ann
 
-classifier.fit(X_train,y_train,batch_size=10,nb_epoch=100)
+classifier.fit(X_train,y_train,batch_size=10,nb_epoch=1)
 
 # batch_size: el numero de objetos que quieres que se vean par ajustar
 # los weights
@@ -137,3 +137,21 @@ with open("model.json", "w") as json_file:
 
 classifier.save_weights("model.h5")
 print("Saved model to disk")
+
+# ahora predecimos un solo valor
+
+# cambiamos los valores de nuestro unico input a los valores que
+# usamos para entrenar
+
+arr = np.array([[0.0,0,600,1,40,3,60000,2,1,1,50000]])
+
+# lo estandarizamos
+
+sc.transform(arr)
+
+# predecimos
+
+new_prediction = classifier.predict(arr)
+new_prediction = new_prediction > 0.5
+
+print(new_prediction)
