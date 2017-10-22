@@ -155,3 +155,114 @@ new_prediction = classifier.predict(arr)
 new_prediction = new_prediction > 0.5
 
 print(new_prediction)
+
+# vamos a usar un meotodo llamado kfolds cross validation para
+# saber que tan preciso es el modelo, el cual entrena sobre el 90%
+# y hace test sobre el otro 10%
+
+# como se usan dos librerias diferentes las importamos por separado
+
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import cross_val_score
+
+# hacemos una funcion que construya la red neruonal de arriba
+
+def build_classifier():
+
+	classifier = Sequential()
+
+	classifier.add(Dense(units=6,kernel_initializer='uniform',activation='relu',input_dim=11))
+	classifier.add(Dense(units=6,kernel_initializer='uniform',activation='relu'))
+	classifier.add(Dense(units=1,kernel_initializer='uniform',activation='sigmoid'))
+	classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+
+	return classifier
+
+# y con esto entrenamos la red
+
+classifier = KerasClassifier(build_fn=build_classifier,batch_size=10,nb_epoch=4)
+
+# aqui es donde aplicamos k folds
+
+accuracies = cross_val_score(estimator=classifier,X=X_train,y=y_train,cv=10,n_jobs=1)
+
+# estimator: es nuestro modelo
+# cv: numero de folds del algoritmo, osea cuantas veces los entrenamos
+# n_jobs: cuantos cpus usar, -1 es todas
+
+# checamos la accuracy con 
+
+# variance
+mean = accuracies.mean()
+
+# bias
+variance = accuracies.std()
+
+# dropout regularization es para solucionar overfitting en deep 
+# learning
+
+from keras.layers import Dropout
+
+classifier = Sequential()
+
+classifier.add(Dense(units=6,kernel_initializer='uniform',activation='relu',input_dim=11))
+classifier.add(Dropout(p=0.1))
+
+classifier.add(Dense(units=6,kernel_initializer='uniform',activation='relu'))
+classifier.add(Dropout(p=0.1))
+
+classifier.add(Dense(units=1,kernel_initializer='uniform',activation='sigmoid'))
+
+classifier.compile(optimizer='Adam',loss='binary_crossentropy',metrics=['accuracy'])
+
+classifier.fit(X_train,y_train,batch_size=10,nb_epoch=1)
+
+# para elegir el valor de sera aumentando de 0.1 en 0.1 que es la
+# cantidad de neuronas desactivadas
+
+# con esto es con el que vamos a elegir el valor perfecto de batch
+# de epochs y mas con parameter tuning
+
+# hyperparametros son los parametros como epochs batch y layers
+
+# vamos a usar una tecnica llamada grid search para optimizar los
+# valores de la red neuronal (parameter tuning)
+
+# importamos librerias
+
+from sklearn.model_selection import GridSearchCV
+
+# hacemos una keras classfier con la funcion ya declarada
+
+def build_classifier(optimizer):
+
+	classifier = Sequential()
+
+	classifier.add(Dense(units=6,kernel_initializer='uniform',activation='relu',input_dim=11))
+	classifier.add(Dense(units=6,kernel_initializer='uniform',activation='relu'))
+	classifier.add(Dense(units=1,kernel_initializer='uniform',activation='sigmoid'))
+	classifier.compile(optimizer = optimizer, loss = 'binary_crossentropy', metrics = ['accuracy'])
+
+	return classifier
+
+classifier = KerasClassifier(build_fn=build_classifier)
+
+# creamos diccionario de los hyperparametros con sus posibles valores
+
+parameters = {"batch_size":[25,32],
+			"nb_epoch":[100,500],
+			"optimizer":['adam','rmsprop']}
+
+# para usar poder cambiar el valor del optimizer tuvimos que agregarlo
+# como un parametro a la funcion que construye la red
+
+# ahora implementamos gridsearchcv
+
+grid_search = GridSearchCV(estimator=classifier,param_grid=parameters,scoring='accuracy',cv=10)
+
+grid_search = grid_search.fit(X_train,y_train)
+
+# buscamos los mejores parametros y ver la precision asi
+
+best_parameters = grid_search.best_params_
+best_accuracy = grid_search.best_score_
