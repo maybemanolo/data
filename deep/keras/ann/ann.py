@@ -72,7 +72,7 @@ classifier.add(Dense(units=1,kernel_initializer='uniform',activation='sigmoid'))
 
 # explicacion de los parametros de Dense:
 
-# units: numerode nodes en la hidden layer con unas tecnicas o
+# units: numero de nodes en la hidden layer con unas tecnicas o
 # (input_nodes+output_nodes)/2, el seis viene de las 11 columnas de
 # X_train mas 1 columna (0 o 1) del ouput dividido entre 2
 
@@ -108,7 +108,7 @@ classifier.fit(X_train,y_train,batch_size=10,nb_epoch=1)
 # batch_size: el numero de objetos que quieres que se vean par ajustar
 # los weights
 
-# nb_xwepochs: cuantas veces va checar todo el dataset
+# nb_epochs: cuantas veces va checar todo el dataset
 
 # predicciones y precision
 
@@ -260,7 +260,7 @@ parameters = {"batch_size":[25,32],
 
 grid_search = GridSearchCV(estimator=classifier,param_grid=parameters,scoring='accuracy',cv=10)
 
-grid_search = grid_search.fit(X_train,y_train)
+grid_search.fit(X_train,y_train)
 
 # buscamos los mejores parametros y ver la precision asi
 
